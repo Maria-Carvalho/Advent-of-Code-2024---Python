@@ -1,24 +1,4 @@
-def read_txt_file(file_path):
-  """
-  Reads a text file and returns its contents as a list of lines.
-  If the file does not exist or an error occurs, prints an error message and returns an empty list.
-
-  Args:
-    file_path (str): The path to the text file.
-
-  Returns:
-    list[str]: A list containing the lines of the file, or an empty list if an error occurs.
-  """
-  try:
-    with open(file_path, 'r') as file:
-      return file.readlines()  # Read all lines into a list
-  except FileNotFoundError:
-    print(f"Error: File not found at {file_path}")
-    return []
-  except Exception as e:
-    print(f"An error occurred: {e}")
-    return []
-
+from common.text_utils import read_txt_file
 
 def report_is_safe(report):
   """
@@ -71,7 +51,7 @@ def count_safe_reports(reports):
 def main():
   print("Red-Nosed Reports")
   file_name = input("Enter the name of the txt file (default: input.txt): ") or "input.txt"
-  content_txt = read_txt_file(file_name)
+  content_txt = read_txt_file(file_name, True)
   
   if content_txt:
     print(f"Reports safe: {count_safe_reports(content_txt)}")
